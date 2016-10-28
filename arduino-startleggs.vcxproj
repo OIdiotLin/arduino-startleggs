@@ -79,11 +79,25 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Buzzer.h" />
+    <ClInclude Include="ColorSensor.h" />
+    <ClInclude Include="LED.h" />
     <ClInclude Include="Pin.h" />
+    <ClInclude Include="Serial.h" />
+    <ClInclude Include="SteeringGear.h" />
+    <ClInclude Include="SteppingMotor.h" />
+    <ClInclude Include="TimerOne.h" />
     <ClInclude Include="__vm\.arduino-startleggs.vsarduino.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Buzzer.cpp" />
+    <ClCompile Include="ColorSensor.cpp" />
+    <ClCompile Include="LED.cpp" />
     <ClCompile Include="Pin.cpp" />
+    <ClCompile Include="Serial.cpp" />
+    <ClCompile Include="SteeringGear.cpp" />
+    <ClCompile Include="SteppingMotor.cpp" />
+    <ClCompile Include="TimerOne.cpp" />
   </ItemGroup>
   <PropertyGroup>
     <DebuggerFlavor>VisualMicroDebugger</DebuggerFlavor>
