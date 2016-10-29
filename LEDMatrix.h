@@ -17,6 +17,9 @@ public:
 	void test();
 	void allOn();
 	void singleOn(int r, int c);
+
+	void yi();
+	void zhong();
 };
 
 #endif // !LED_MATRIX_H
