@@ -1,30 +1,13 @@
-// This is a test program for ColorSensor TCS3200
-
 #include <Arduino.h>
-#include "ColorSensor.h"
-#include "Serial.h"
-#include "TimerOne.h"
+#include "LEDMatrix.h"
 
-ColorSensor TCS3200 = ColorSensor(3, 4, 5, 6, 2);
-
-void callback() {
-	// used for TCS3200.recall()
-	TCS3200.recall();
-}
-void count() {
-	// used for TCS3200.count();
-	TCS3200.count();
-}
+int pinMatR[] = { 2,3,4,5,14,15,16,17 };
+int pinMatC[] = { 6,7,8,9,10,11,12,13 };
+LEDMatrix mat = LEDMatrix(pinMatR,pinMatC);
 
 void setup() {
-	Serial.begin(9600);
-	Timer1.initialize();
-	Timer1.attachInterrupt(callback);
-	attachInterrupt(0, count, RISING);
-	TCS3200.init();
+	mat.test();
 }
 
 void loop() {
-	TCS3200.reset();
-	sendMsg((TCS3200.getRGB()).getString());
 }
