@@ -39,9 +39,6 @@
     <ClInclude Include="SteppingMotor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="TimerOne.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ColorSensor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -66,9 +63,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="SteppingMotor.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="TimerOne.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ColorSensor.cpp">

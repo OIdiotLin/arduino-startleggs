@@ -5,7 +5,7 @@ void sendMsg(char *msg) {
 }
 
 void sendMsg(int n) {
-	Serial.print(n);
+	Serial.println(n);
 }
 
 int readInt() {

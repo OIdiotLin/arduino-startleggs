@@ -1,21 +1,18 @@
 #include "Pin.h"
 #pragma once
-#define RGB_MAX (255.0)
-struct RGBscale {
-	float red, green, blue;
+#define RGB_MAX (255)
+struct Color {
+	int lower, upper;	// used for map() arguments
+	Color(int l, int r) { lower = l, upper = r; }
 };
+const Color R = Color(25, 72);
+const Color G = Color(30, 90);
+const Color B = Color(25, 70);
 struct RGB {
-	int red, green, blue;
-	RGB operator*(const RGBscale& scale) {
-		RGB res;
-		res.red = this->red*scale.red;
-		res.green = this->green*scale.green;
-		res.blue = this->blue*scale.blue;
-		return res;
-	}
-	char* getString() {
+	int R, G, B;
+	char* info() {
 		char *s;
-		sprintf(s, "[%d,%d,%d]\0", red, green, blue);
+		sprintf(s, "R=%d,G=%d,B=%d\n", R, G, B);
 		return s;
 	}
 };
@@ -25,19 +22,12 @@ struct RGB {
 class ColorSensor {
 private:
 	Pin S0, S1, S2, S3, OUT;
-	int freqCount;	// count the frequency
-	int currentFilter;	// store current filter, choosing which color is being read
-	RGB colorData;	// store final result
-	RGBscale scale;	// save the RGB Scale factor
-	void filterChange(bool level0, bool level1);	// change the filter mode
+	void shiftMode(int mode);	// 0: clear, 1: red, 2: green, 3: blue
 public:
 	ColorSensor();
 	ColorSensor(uint8_t id0,uint8_t id1,uint8_t id2,uint8_t id3,uint8_t idO);
 	~ColorSensor();
-	void recall();	// return RGB
-	void count();	// used for attachInterrupt
-	void init();		// initialize the sensor and calc the scale factor
-	void reset();	// reset the freqCount
-	RGB getRGB();	// calculate the RGB value and delay 2s
+	void init();	
+	RGB readRGB();
 };
 #endif // !COLOR_SENSOR_H

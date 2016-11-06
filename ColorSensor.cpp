@@ -1,17 +1,31 @@
 // Using TCS3200
 #include "ColorSensor.h"
-#include "TimerOne.h"
-#include <Arduino.h>
 
-void ColorSensor::filterChange(bool level0, bool level1) {
-	freqCount = 0;
-	currentFilter++;
-	S2.setDigital(level0);
-	S3.setDigital(level1);
-	Timer1.setPeriod(1000000);		// set 1s period
+void ColorSensor::shiftMode(int mode) {
+	switch (mode) {
+	case 0:
+		S2.setDigital(HIGH);
+		S3.setDigital(LOW);
+	case 1:
+		S2.setDigital(LOW);
+		S3.setDigital(LOW);
+		break;
+	case 2:
+		S2.setDigital(HIGH);
+		S3.setDigital(HIGH);
+		break;
+	case 3:
+		S2.setDigital(LOW);
+		S3.setDigital(HIGH);
+		break;
+	default:
+		break;
+	}
 }
 
-ColorSensor::ColorSensor() {}
+ColorSensor::ColorSensor()
+{
+}
 
 ColorSensor::ColorSensor(uint8_t id0, uint8_t id1, uint8_t id2, uint8_t id3, uint8_t idO) {
 	S0.setId(id0), S0.setMode(OUTPUT);
@@ -19,53 +33,25 @@ ColorSensor::ColorSensor(uint8_t id0, uint8_t id1, uint8_t id2, uint8_t id3, uin
 	S2.setId(id2), S2.setMode(OUTPUT);
 	S3.setId(id3), S3.setMode(OUTPUT);
 	OUT.setId(idO), OUT.setMode(INPUT);
-	S0.setDigital(LOW);
-	S1.setDigital(HIGH);
-	currentFilter = freqCount = 0;
 }
 
-
-ColorSensor::~ColorSensor() {}
-
-void ColorSensor::recall() {
-	switch (currentFilter) {
-	case 0:
-		filterChange(LOW, LOW);	// filter without red
-		break;
-	case 1:
-		colorData.red = freqCount;
-		filterChange(HIGH, HIGH);	// filter without green
-		break;
-	case 2:
-		colorData.green = freqCount;
-		filterChange(LOW, HIGH);	// filter without blue
-		break;
-	case 3:
-		colorData.blue = freqCount;
-		filterChange(HIGH, LOW);	// filter clear
-		break;
-	default:
-		freqCount = 0;
-		break;
-	}
-}
-
-void ColorSensor::count() {
-	freqCount++;
+ColorSensor::~ColorSensor()
+{
 }
 
 void ColorSensor::init() {
-	delay(4000);
-	scale.red = RGB_MAX / colorData.red;
-	scale.green = RGB_MAX / colorData.green;
-	scale.blue = RGB_MAX / colorData.blue;
+	// Setting frequency-scaling to 20%
+	S0.setDigital(HIGH);
+	S1.setDigital(LOW);
 }
 
-void ColorSensor::reset() {
-	freqCount = 0;
-}
-
-RGB ColorSensor::getRGB() {
-	delay(4000);
-	return this->colorData*this->scale;
+RGB ColorSensor::readRGB() {
+	RGB color;
+	shiftMode(1);
+	color.R = map(pulseIn(OUT.getId(), LOW), R.lower, R.upper, RGB_MAX, 0);
+	shiftMode(2);
+	color.G = map(pulseIn(OUT.getId(), LOW), G.lower, G.upper, RGB_MAX, 0);
+	shiftMode(3);
+	color.B = map(pulseIn(OUT.getId(), LOW), B.lower, B.upper, RGB_MAX, 0);
+	return color;
 }
