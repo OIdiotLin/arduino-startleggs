@@ -10,11 +10,6 @@ const Color G = Color(30, 90);
 const Color B = Color(25, 70);
 struct RGB {
 	int R, G, B;
-	char* info() {
-		char *s;
-		sprintf(s, "R=%d,G=%d,B=%d\n", R, G, B);
-		return s;
-	}
 };
 // Using TCS3200
 #ifndef COLOR_SENSOR_H
