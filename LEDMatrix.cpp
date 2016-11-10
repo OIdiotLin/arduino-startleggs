@@ -2,6 +2,14 @@
 
 
 
+void LEDMatrix::lightenRow(bool * row,int rowId) {
+	for (int i = 0;i < SIZE;i++) {
+		if (row[i] == 0)
+			colOff[i].setDigital(HIGH);
+	}
+	rowOn[rowId].setDigital(HIGH);
+}
+
 LEDMatrix::LEDMatrix() {}
 
 LEDMatrix::LEDMatrix(int * r_id, int * c_id) {
@@ -46,6 +54,17 @@ void LEDMatrix::singleOn(int r, int c) {
 	for (int i = 0;i < SIZE;i++)
 		if (i != c)
 			colOff[i].setDigital(HIGH);
+}
+
+void LEDMatrix::showCharacter(bool * charMode[SIZE], int ms) {
+	unsigned int start = millis();
+	while (millis() - start < ms) {
+		for (int i = 0;i < SIZE;i++) {
+			lightenRow(charMode[i], i);
+			delay(SCAN_INTERVAL);
+			
+		}
+	}
 }
 
 void LEDMatrix::yi() {

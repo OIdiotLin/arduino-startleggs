@@ -11,9 +11,9 @@ Buzzer::Buzzer(uint8_t _id) {
 Buzzer::~Buzzer() {}
 
 void Buzzer::beep(int interval) {
-	this->pin.setDigital(HIGH);
-	delayMicroseconds(interval);
 	this->pin.setDigital(LOW);
+	delayMicroseconds(interval);
+	this->pin.setDigital(HIGH);
 	delayMicroseconds(interval);
 }
 
