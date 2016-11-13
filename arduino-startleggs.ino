@@ -1,13 +1,14 @@
-#include <Arduino.h>
-#include "Buzzer.h"
+/*
+	this project is a homework of the Digital System Creative Design.
+	Developers: Muming Lian, Huidong Lin, Wenyu Huang, Queji Li
+	Tutor: Jinhui Zhu
+*/
 
-Buzzer buz = Buzzer(8);
+#include <Arduino.h>
+#include "Startleggs.h"	// including all classes used in this project
 
 void setup() {
-	Serial.begin(115200);
 }
 
 void loop() {
-	buz.sweep(200,1200);
-	delay(3000);
 }

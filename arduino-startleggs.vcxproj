@@ -85,6 +85,7 @@
     <ClInclude Include="LEDMatrix.h" />
     <ClInclude Include="Pin.h" />
     <ClInclude Include="Serial.h" />
+    <ClInclude Include="Startleggs.h" />
     <ClInclude Include="SteeringGear.h" />
     <ClInclude Include="SteppingMotor.h" />
     <ClInclude Include="__vm\.arduino-startleggs.vsarduino.h" />
@@ -96,6 +97,7 @@
     <ClCompile Include="LEDMatrix.cpp" />
     <ClCompile Include="Pin.cpp" />
     <ClCompile Include="Serial.cpp" />
+    <ClCompile Include="Startleggs.cpp" />
     <ClCompile Include="SteeringGear.cpp" />
     <ClCompile Include="SteppingMotor.cpp" />
   </ItemGroup>
