@@ -1,5 +1,9 @@
 #include "LED.h"
 
+LED::LED()
+{
+}
+
 LED::LED(uint8_t _id) {
 	this->pin.setId(_id);		// set the pin ID
 	this->pin.setMode(OUTPUT);	// set the pinMode to OUTPUT

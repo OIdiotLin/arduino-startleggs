@@ -1,13 +1,13 @@
 #include "Pin.h"
 #pragma once
 #define RGB_MAX (255)
-struct Color {
+struct ColorFilter {
 	int lower, upper;	// used for map() arguments
-	Color(int l, int r) { lower = l, upper = r; }
+	ColorFilter(int l, int r) { lower = l, upper = r; }
 };
-const Color R = Color(25, 72);
-const Color G = Color(30, 90);
-const Color B = Color(25, 70);
+const ColorFilter R = ColorFilter(25, 72);
+const ColorFilter G = ColorFilter(30, 90);
+const ColorFilter B = ColorFilter(25, 70);
 struct RGB {
 	int R, G, B;
 };

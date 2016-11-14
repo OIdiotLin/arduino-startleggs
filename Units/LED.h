@@ -6,6 +6,7 @@ class LED {
 private:
 	Pin pin;	// this LED uses only 1 pin
 public:
+	LED();
 	LED(uint8_t _id);	//	set pin number when create an LED
 	~LED();
 	void lightOn();	// Turn on the LED

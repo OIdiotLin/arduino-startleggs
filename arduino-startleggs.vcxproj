@@ -79,27 +79,31 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Buzzer.h" />
-    <ClInclude Include="ColorSensor.h" />
-    <ClInclude Include="LED.h" />
-    <ClInclude Include="LEDMatrix.h" />
-    <ClInclude Include="Pin.h" />
-    <ClInclude Include="Serial.h" />
     <ClInclude Include="Startleggs.h" />
-    <ClInclude Include="SteeringGear.h" />
-    <ClInclude Include="SteppingMotor.h" />
+    <ClInclude Include="Units\Buzzer.h" />
+    <ClInclude Include="Units\ColorSensor.h" />
+    <ClInclude Include="Units\LED.h" />
+    <ClInclude Include="Units\LEDMatrix.h" />
+    <ClInclude Include="Units\Pin.h" />
+    <ClInclude Include="Units\Serial.h" />
+    <ClInclude Include="Units\SteeringGear.h" />
+    <ClInclude Include="Units\SteppingMotor.h" />
+    <ClInclude Include="Units\Switch.h" />
+    <ClInclude Include="Units\TimerOne.h" />
     <ClInclude Include="__vm\.arduino-startleggs.vsarduino.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Buzzer.cpp" />
-    <ClCompile Include="ColorSensor.cpp" />
-    <ClCompile Include="LED.cpp" />
-    <ClCompile Include="LEDMatrix.cpp" />
-    <ClCompile Include="Pin.cpp" />
-    <ClCompile Include="Serial.cpp" />
     <ClCompile Include="Startleggs.cpp" />
-    <ClCompile Include="SteeringGear.cpp" />
-    <ClCompile Include="SteppingMotor.cpp" />
+    <ClCompile Include="Units\Buzzer.cpp" />
+    <ClCompile Include="Units\ColorSensor.cpp" />
+    <ClCompile Include="Units\LED.cpp" />
+    <ClCompile Include="Units\LEDMatrix.cpp" />
+    <ClCompile Include="Units\Pin.cpp" />
+    <ClCompile Include="Units\Serial.cpp" />
+    <ClCompile Include="Units\SteeringGear.cpp" />
+    <ClCompile Include="Units\SteppingMotor.cpp" />
+    <ClCompile Include="Units\Switch.cpp" />
+    <ClCompile Include="Units\TimerOne.cpp" />
   </ItemGroup>
   <PropertyGroup>
     <DebuggerFlavor>VisualMicroDebugger</DebuggerFlavor>
