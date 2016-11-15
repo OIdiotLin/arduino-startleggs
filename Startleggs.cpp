@@ -21,11 +21,57 @@ void Startleggs::init() {
 	touch = Switch(TOUCH_PIN_ID);
 }
 
+int Startleggs::detectColor() {
+	// something left to do.
+	// unfinished.
+	return 0;
+}
+
+color Startleggs::getCurrentColor() {
+	return this->currentColor;
+}
+
+void Startleggs::changeEye() {
+	switch (currentColor) {
+	case RED:
+		eyesBlue.lightOff();
+		eyesRed.lightOn();
+		break;
+	case BLUE:
+		eyesRed.lightOff();
+		eyesBlue.lightOn();
+		break;
+	case UNKNOWN:
+	default:
+		eyesBlue.lightOff();
+		eyesRed.lightOff();
+		break;
+	}
+}
+
 void Startleggs::layEgg() {
 	switch (currentColor) {
 	case RED:
-		
+		this->turnplate.setAngle(RED_GROOVE);
+		this->turnplate.setAngle(MID_ANG);
+		break;
+	case BLUE:
+		this->turnplate.setAngle(BLUE_GROOVE);
+		this->turnplate.setAngle(MID_ANG);
+		break;
+	default:
+		break;
 	}
+}
+
+void Startleggs::shakeHead() {
+	this->head.sweep(MID_ANG, MIN_SHAKE);
+	this->head.sweep(MIN_SHAKE, MAX_SHAKE);
+	this->head.sweep(MAX_SHAKE, MID_ANG);
+}
+
+bool Startleggs::isFed() {
+	return this->currentColor != UNKNOWN;
 }
 
 bool Startleggs::isTouched() {
