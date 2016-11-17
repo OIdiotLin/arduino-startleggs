@@ -9,25 +9,45 @@
       <VCCodeMacros />
     </VCCodeModel>
     <BreakPoints>
-      <BreakPoint Index="1" Name="arduino-startleggs.ino，行 20" Id="1274f824-4e48-430f-b7a6-dfe9ccb30528" Enabled="0" Message="  Millis is currently {millis()}.&#xD;&#xA;Press F5 to continue.&#xD;&#xA;    Press Ctrl+F5 to stop debugging or close/stop the Serial Monitor&#xD;&#xA;  &#xD;&#xA;    The code is stopped at the start of the loop() function, where you see a red dot.&#xD;&#xA;    The red dot is a ‘breakpoint’.&#xD;&#xA;    This breakpoint is automatically set by Visual Micro to demonstrate the Arduino debugger.&#xD;&#xA;    Add your own breakpoints by placing the cursor on any code line and pressing F9. Press F9 again to delete the breakpoint.&#xD;&#xA;    Read more about the Visual Micro debugger at http://www.visualmicro.com/page/Debugging-for-Arduino.aspx&#xD;&#xA;    Take some time to learn about debugging, it’s worth it!&#xD;&#xA;    To switch the demo breakpoint and other tips off, deselect Visual Micro&gt;Tutorial Mode.&#xD;&#xA;" MessageTextType="0" PreProcessedMessage="  Millis is currently {0}.&#xD;&#xA;Press F5 to continue.&#xD;&#xA;    Press Ctrl+F5 to stop debugging or close/stop the Serial Monitor&#xD;&#xA;  &#xD;&#xA;    The code is stopped at the start of the loop() function, where you see a red dot.&#xD;&#xA;    The red dot is a ‘breakpoint’.&#xD;&#xA;    This breakpoint is automatically set by Visual Micro to demonstrate the Arduino debugger.&#xD;&#xA;    Add your own breakpoints by placing the cursor on any code line and pressing F9. Press F9 again to delete the breakpoint.&#xD;&#xA;    Read more about the Visual Micro debugger at http://www.visualmicro.com/page/Debugging-for-Arduino.aspx&#xD;&#xA;    Take some time to learn about debugging, it’s worth it!&#xD;&#xA;    To switch the demo breakpoint and other tips off, deselect Visual Micro&gt;Tutorial Mode.&#xD;&#xA;" Condition="millis()&gt;0 || millis()&gt;1" ConditionType="1" CurrentHits="0" File="c:\users\oidiot\documents\arduino\arduino-startleggs\arduino-startleggs.ino" FileLine="20" FileColumn="1" FunctionName="" FunctionLineOffset="1" FunctionColumnOffset="1" HitCountTarget="250" HitCountType="4" Language="C++" LocationType="3" Tag="&lt;vmbp Id='1274f824-4e48-430f-b7a6-dfe9ccb30528'/&gt;" Type="1" ToString="System.__ComObject" BreakWhenHit="1">
-        <Source>13		ancientGiantCock.init();
-14	#ifdef DEBUG
-15		sendMsg("Initialization finished!");
-16	#endif // DEBUG
-17	
-18	}
-19	
---&gt;20	void loop() {
-21		ancientGiantCock.detectColor();
-22		if (ancientGiantCock.getCurrentColor() == GREEN)
-23			ancientGiantCock.shakeHead();
-24		if (ancientGiantCock.isTouched())
-25			ancientGiantCock.layEgg();
-26	}
+      <BreakPoint Index="1" Name="arduino-startleggs.ino，行 23" Id="1274f824-4e48-430f-b7a6-dfe9ccb30528" Enabled="0" Message="  Millis is currently {millis()}.&#xD;&#xA;Press F5 to continue.&#xD;&#xA;    Press Ctrl+F5 to stop debugging or close/stop the Serial Monitor&#xD;&#xA;  &#xD;&#xA;    The code is stopped at the start of the loop() function, where you see a red dot.&#xD;&#xA;    The red dot is a ‘breakpoint’.&#xD;&#xA;    This breakpoint is automatically set by Visual Micro to demonstrate the Arduino debugger.&#xD;&#xA;    Add your own breakpoints by placing the cursor on any code line and pressing F9. Press F9 again to delete the breakpoint.&#xD;&#xA;    Read more about the Visual Micro debugger at http://www.visualmicro.com/page/Debugging-for-Arduino.aspx&#xD;&#xA;    Take some time to learn about debugging, it’s worth it!&#xD;&#xA;    To switch the demo breakpoint and other tips off, deselect Visual Micro&gt;Tutorial Mode.&#xD;&#xA;" MessageTextType="0" PreProcessedMessage="  Millis is currently {0}.&#xD;&#xA;Press F5 to continue.&#xD;&#xA;    Press Ctrl+F5 to stop debugging or close/stop the Serial Monitor&#xD;&#xA;  &#xD;&#xA;    The code is stopped at the start of the loop() function, where you see a red dot.&#xD;&#xA;    The red dot is a ‘breakpoint’.&#xD;&#xA;    This breakpoint is automatically set by Visual Micro to demonstrate the Arduino debugger.&#xD;&#xA;    Add your own breakpoints by placing the cursor on any code line and pressing F9. Press F9 again to delete the breakpoint.&#xD;&#xA;    Read more about the Visual Micro debugger at http://www.visualmicro.com/page/Debugging-for-Arduino.aspx&#xD;&#xA;    Take some time to learn about debugging, it’s worth it!&#xD;&#xA;    To switch the demo breakpoint and other tips off, deselect Visual Micro&gt;Tutorial Mode.&#xD;&#xA;" Condition="millis()&gt;0 || millis()&gt;1" ConditionType="1" CurrentHits="0" File="c:\users\oidiot\documents\arduino\arduino-startleggs\arduino-startleggs.ino" FileLine="23" FileColumn="1" FunctionName="" FunctionLineOffset="1" FunctionColumnOffset="1" HitCountTarget="250" HitCountType="4" Language="C++" LocationType="3" Tag="&lt;vmbp Id='1274f824-4e48-430f-b7a6-dfe9ccb30528'/&gt;" Type="1" ToString="System.__ComObject" BreakWhenHit="1">
+        <Source>16	#ifdef DEBUG
+17		Serial.begin(115200);
+18		sendMsg("Initialization finished!");
+19	#endif // DEBUG
+20	
+21	}
+22	
+--&gt;23	void loop() {
+24		ancientGiantCock.detectColor();
+25		if (ancientGiantCock.getCurrentColor() == GREEN)
+26			ancientGiantCock.shakeHead();
+27		if (ancientGiantCock.isTouched())
+28			ancientGiantCock.layEgg();
+29	}
 </Source>
         <MessageVariables>
           <MessageVariable Name="millis()" Index="1" />
         </MessageVariables>
+      </BreakPoint>
+      <BreakPoint Index="2" Name="Startleggs.cpp，行 79" Id="28d5de10-cfd3-4a48-bd24-bf990905ab11" Enabled="1" Message="" MessageTextType="2" PreProcessedMessage="" Condition="" ConditionType="1" CurrentHits="0" File="c:\users\oidiot\documents\arduino\arduino-startleggs\startleggs.cpp" FileLine="79" FileColumn="1" FunctionName="crowing()" FunctionLineOffset="3" FunctionColumnOffset="1" HitCountTarget="1" HitCountType="1" Language="C++" LocationType="3" Tag="&lt;vmbp Id='28d5de10-cfd3-4a48-bd24-bf990905ab11'/&gt;" Type="1" ToString="System.__ComObject" BreakWhenHit="1">
+        <Source>72	}
+73	
+74	void Startleggs::crowing() {
+75		this-&gt;crow.sweep(1000, 2000);
+76	#ifdef DEBUG
+77		sendMsg("sweep");
+78	#endif
+--&gt;79		delay(200);
+80		this-&gt;crow.sweep(2000,1000);
+81	}
+82	
+83	bool Startleggs::isFed() {
+84		return this-&gt;currentColor != UNKNOWN;
+85	}
+86	
+87	bool Startleggs::isTouched() {
+88		return touch.getStatus();
+</Source>
       </BreakPoint>
     </BreakPoints>
   </Program>

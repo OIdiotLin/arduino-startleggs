@@ -5,6 +5,7 @@ Buzzer::Buzzer() {}
 Buzzer::Buzzer(uint8_t _id) {
 	this->pin.setId(_id);
 	this->pin.setMode(OUTPUT);
+	this->pin.setDigital(HIGH);
 }
 
 

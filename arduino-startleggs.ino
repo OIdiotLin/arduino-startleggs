@@ -9,9 +9,12 @@
  
 Startleggs ancientGiantCock;
 
+#define DEBUG
+
 void setup() {
 	ancientGiantCock.init();
 #ifdef DEBUG
+	Serial.begin(115200);
 	sendMsg("Initialization finished!");
 #endif // DEBUG
 

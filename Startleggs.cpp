@@ -24,7 +24,8 @@ void Startleggs::init() {
 int Startleggs::detectColor() {
 	// something left to do.
 	// unfinished.
-	return 0;
+	this->sensor.readRGB();
+	return this->currentColor;
 }
 
 color Startleggs::getCurrentColor() {
@@ -68,6 +69,15 @@ void Startleggs::shakeHead() {
 	this->head.sweep(MID_ANG, MIN_SHAKE);
 	this->head.sweep(MIN_SHAKE, MAX_SHAKE);
 	this->head.sweep(MAX_SHAKE, MID_ANG);
+}
+
+void Startleggs::crowing() {
+	this->crow.sweep(1000, 2000);
+#ifdef DEBUG
+	sendMsg("sweep");
+#endif
+	delay(200);
+	this->crow.sweep(2000,1000);
 }
 
 bool Startleggs::isFed() {
