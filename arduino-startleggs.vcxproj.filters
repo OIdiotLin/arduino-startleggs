@@ -54,6 +54,9 @@
     <ClInclude Include="Units\TimerOne.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Units\pitches.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Startleggs.cpp">

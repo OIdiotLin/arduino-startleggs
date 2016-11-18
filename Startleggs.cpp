@@ -1,6 +1,6 @@
 #include "Startleggs.h"
 
-
+#define DEBUG
 
 Startleggs::Startleggs()
 {
@@ -19,6 +19,7 @@ void Startleggs::init() {
 	crow = Buzzer(CROW_PIN_ID);
 	sensor = ColorSensor(SENSOR_PINS_ID);
 	touch = Switch(TOUCH_PIN_ID);
+	currentColor = UNKNOWN;
 }
 
 int Startleggs::detectColor() {
@@ -51,6 +52,10 @@ void Startleggs::changeEye() {
 }
 
 void Startleggs::layEgg() {
+#ifdef DEBUG
+	sendMsg("current Color is ");
+	sendMsg(currentColor);
+#endif
 	switch (currentColor) {
 	case RED:
 		this->turnplate.setAngle(RED_GROOVE);
@@ -73,9 +78,6 @@ void Startleggs::shakeHead() {
 
 void Startleggs::crowing() {
 	this->crow.sweep(1000, 2000);
-#ifdef DEBUG
-	sendMsg("sweep");
-#endif
 	delay(200);
 	this->crow.sweep(2000,1000);
 }

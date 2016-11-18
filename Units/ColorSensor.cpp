@@ -66,6 +66,7 @@ RGB ColorSensor::readRGB() {
 	delay(100);
 
 #ifdef DEBUG
+	sendMsg(millis());
 	sendMsg(color.R);
 	sendMsg(color.G);
 	sendMsg(color.B);

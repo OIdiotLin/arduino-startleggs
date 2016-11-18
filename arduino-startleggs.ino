@@ -13,17 +13,24 @@ Startleggs ancientGiantCock;
 
 void setup() {
 	ancientGiantCock.init();
-#ifdef DEBUG
-	Serial.begin(115200);
-	sendMsg("Initialization finished!");
-#endif // DEBUG
-
+//#ifdef DEBUG
+//	Serial.begin(115200);
+//	sendMsg("Initialization finished!\n");
+//#endif // DEBUG
+	
 }
 
 void loop() {
-	ancientGiantCock.detectColor();
-	if (ancientGiantCock.getCurrentColor() == GREEN)
-		ancientGiantCock.shakeHead();
-	if (ancientGiantCock.isTouched())
-		ancientGiantCock.layEgg();
+//	if (ancientGiantCock.getCurrentColor() == GREEN) {
+//#ifdef DEBUG
+//		sendMsg("\tGREEN!\n");
+//#endif
+//		ancientGiantCock.shakeHead();
+//	}
+//	if (ancientGiantCock.isTouched()) {
+//#ifdef DEBUG
+//		sendMsg("TOUCHED!\n");
+//#endif
+//		ancientGiantCock.layEgg();
+//	}
 }
