@@ -5,8 +5,8 @@
 #ifndef BUZZER_H
 #define BUZZER_H
 
-#define WHOLE_NOTE_DURATION 300		// whole note lasts one sec.
-#define INTERVAL_BETWEEN_NOTES 1.3	// to distinguish the notes, set a minimum time between them.
+#define WHOLE_NOTE_DURATION 400		// whole note lasts one sec.
+#define INTERVAL_BETWEEN_NOTES 1.2	// to distinguish the notes, set a minimum time between them.
 
 class Buzzer {
 private:

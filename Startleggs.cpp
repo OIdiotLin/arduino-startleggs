@@ -12,6 +12,7 @@ Startleggs::~Startleggs()
 }
 
 void Startleggs::init() {
+	// units pin setting
 	eyesBlue = LED(EYES_BLUE_PIN_ID);
 	eyesRed = LED(EYES_RED_PIN_ID);
 	head = SteeringGear(HEAD_PIN_ID);
@@ -19,7 +20,17 @@ void Startleggs::init() {
 	crow = Buzzer(CROW_PIN_ID);
 	sensor = ColorSensor(SENSOR_PINS_ID);
 	touch = Switch(TOUCH_PIN_ID);
+	// units testing
+	turnplate.sweep(RED_GROOVE, BLUE_GROOVE);
+	head.sweep(MIN_SHAKE, MAX_SHAKE);
+	delay(500);
 	currentColor = UNKNOWN;
+	for (int i = 0;i < 70;i++) {
+		turnplate.setAngle(MID_GROOVE);
+		head.setAngle(MID_SHAKE);
+	}
+	eyesBlue.blink(200);
+	eyesRed.blink(200);
 }
 
 int Startleggs::detectColor() {
@@ -51,6 +62,26 @@ void Startleggs::changeEye() {
 	}
 }
 
+#ifdef DEBUG
+void Startleggs::changeEye(color x) {
+	switch (x) {
+	case RED:
+		eyesBlue.lightOff();
+		eyesRed.lightOn();
+		break;
+	case BLUE:
+		eyesRed.lightOff();
+		eyesBlue.lightOn();
+		break;
+	case UNKNOWN:
+	default:
+		eyesBlue.lightOff();
+		eyesRed.lightOff();
+		break;
+	}
+}
+#endif
+
 void Startleggs::layEgg() {
 #ifdef DEBUG
 	sendMsg("current Color is ");
@@ -66,25 +97,25 @@ void Startleggs::layEgg() {
 		this->turnplate.setAngle(MID_ANG);
 		break;
 	default:
+#ifdef DEBUG
+		this->turnplate.sweep(RED_GROOVE, BLUE_GROOVE);
+		delay(200);
+		this->turnplate.sweep(BLUE_GROOVE, RED_GROOVE);
+		delay(300);
+#endif
 		break;
 	}
 }
 
 void Startleggs::shakeHead() {
-	/*this->head.sweep(MID_ANG, MIN_SHAKE);
+	this->head.sweep(MID_ANG, MIN_SHAKE);
 	this->head.sweep(MIN_SHAKE, MAX_SHAKE);
-	this->head.sweep(MAX_SHAKE, MID_ANG);*/
-	this->head.setAngle(MIN_SHAKE);
-	delay(20);
-	this->head.setAngle(MAX_SHAKE);
-	delay(20);
-	this->head.setAngle(MID_SHAKE);
+	this->head.sweep(MAX_SHAKE, MID_ANG);
 }
 
 void Startleggs::crowing() {
-	this->crow.sweep(1000, 2000);
-	delay(200);
-	this->crow.sweep(2000,1000);
+	crow.playMelody(crowNotes, crowDurations, 3);
+	
 }
 
 bool Startleggs::isFed() {

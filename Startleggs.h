@@ -2,6 +2,9 @@
 	This head file includes the main high-level operations.
 	All other underlying codes are included in the head files below.
 */
+
+#define DEBUG
+
 #include "Units\Buzzer.h"	// Simulating the crow
 #include "Units\ColorSensor.h"	// Scanning the kind of the food given
 #include "Units\LED.h"	// Changing colors after swallow particular kinds of food 
@@ -27,8 +30,13 @@ typedef int color;
 #define MIN_SHAKE 45		// head rotated to left
 #define MAX_SHAKE 135	// head rotated to right
 #define MID_SHAKE 90		// head reset to mid position
-#define RED_GROOVE 60	// left groove restoring red eggs
-#define BLUE_GROOVE 120	// right groove restoring blue eggs
+#define RED_GROOVE 0	// left groove restoring red eggs
+#define BLUE_GROOVE 55	// right groove restoring blue eggs
+#define MID_GROOVE 30	// turnplate reset to the middle position
+
+/***************************CONSTANT_MELODY***********************/
+const int crowNotes[3] = { NOTE_A5,NOTE_C6,NOTE_AS5};
+const double crowDurations[3] = { DUR_HALF_PNT,DUR_DOUBLE,DUR_DOUBLE };
 
 #ifndef STARTLEGGS_H
 #define STARTLEGGS_H
@@ -47,6 +55,9 @@ public:
 	color detectColor();	// return RED 0; GREEN 1; BLUE 2;
 	color getCurrentColor();	// return member cuurentColor
 	void changeEye();	// change eyes' color according to cuurentColor
+#ifdef DEBUG
+	void changeEye(color x);
+#endif
 	void layEgg();
 	void shakeHead();	// shake head when getColor red
 	void crowing();

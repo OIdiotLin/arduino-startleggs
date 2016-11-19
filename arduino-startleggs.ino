@@ -17,10 +17,12 @@ void setup() {
 //	Serial.begin(115200);
 //	sendMsg("Initialization finished!\n");
 //#endif // DEBUG
-	
+	delay(5000);
 }
 
 void loop() {
+	ancientGiantCock.layEgg();
+	delay(2000);
 //	if (ancientGiantCock.getCurrentColor() == GREEN) {
 //#ifdef DEBUG
 //		sendMsg("\tGREEN!\n");
