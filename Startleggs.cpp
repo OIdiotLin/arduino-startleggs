@@ -20,18 +20,12 @@ void Startleggs::init() {
 	sensor = ColorSensor(SENSOR_PINS_ID);
 	touch = Switch(TOUCH_PIN_ID);
 	currentColor = UNKNOWN;
-#ifdef DEBUG
-	head.setAngle(MID_ANG);
-	head.sweep(MID_ANG, MIN_ANG);
-	head.sweep(MIN_ANG, MAX_ANG);
-	head.sweep(MAX_ANG, MIN_ANG);
-#endif
 }
 
 int Startleggs::detectColor() {
 	// something left to do.
 	// unfinished.
-	this->sensor.readRGB();
+	RGB colorInfo = this->sensor.readRGB();
 	return this->currentColor;
 }
 
