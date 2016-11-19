@@ -24,10 +24,11 @@
 #define UNKNOWN 233
 typedef int color;
 /***************************CONSTANT_ANGLE***********************/
-#define MIN_SHAKE 45
-#define MAX_SHAKE 135
-#define RED_GROOVE 60
-#define BLUE_GROOVE 120
+#define MIN_SHAKE 45		// head rotated to left
+#define MAX_SHAKE 135	// head rotated to right
+#define MID_SHAKE 90		// head reset to mid position
+#define RED_GROOVE 60	// left groove restoring red eggs
+#define BLUE_GROOVE 120	// right groove restoring blue eggs
 
 #ifndef STARTLEGGS_H
 #define STARTLEGGS_H

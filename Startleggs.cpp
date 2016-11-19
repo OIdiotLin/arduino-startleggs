@@ -20,6 +20,12 @@ void Startleggs::init() {
 	sensor = ColorSensor(SENSOR_PINS_ID);
 	touch = Switch(TOUCH_PIN_ID);
 	currentColor = UNKNOWN;
+#ifdef DEBUG
+	head.setAngle(MID_ANG);
+	head.sweep(MID_ANG, MIN_ANG);
+	head.sweep(MIN_ANG, MAX_ANG);
+	head.sweep(MAX_ANG, MIN_ANG);
+#endif
 }
 
 int Startleggs::detectColor() {
@@ -71,9 +77,14 @@ void Startleggs::layEgg() {
 }
 
 void Startleggs::shakeHead() {
-	this->head.sweep(MID_ANG, MIN_SHAKE);
+	/*this->head.sweep(MID_ANG, MIN_SHAKE);
 	this->head.sweep(MIN_SHAKE, MAX_SHAKE);
-	this->head.sweep(MAX_SHAKE, MID_ANG);
+	this->head.sweep(MAX_SHAKE, MID_ANG);*/
+	this->head.setAngle(MIN_SHAKE);
+	delay(20);
+	this->head.setAngle(MAX_SHAKE);
+	delay(20);
+	this->head.setAngle(MID_SHAKE);
 }
 
 void Startleggs::crowing() {
