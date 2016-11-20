@@ -1,7 +1,5 @@
 #include "Startleggs.h"
 
-#define DEBUG
-
 Startleggs::Startleggs()
 {
 }
@@ -22,31 +20,10 @@ void Startleggs::init() {
 	touch = Switch(TOUCH_PIN_ID);
 
 	// units testing
-	while (true) {
-		detectColor();
-#ifdef DEBUG
-		int x = this->getCurrentColor();
-		switch (x)
-		{
-		case 0:
-			sendMsg("RED\n");
-			break;
-		case 1:
-			sendMsg("GREEN\n");
-			break;
-		case 2:
-			sendMsg("BLUE\n");
-			break;
-		default:
-			sendMsg("UNKNOWN\n");
-			break;
-		}
-#endif
-	}
 	turnplate.sweep(RED_GROOVE, BLUE_GROOVE);
 	head.sweep(MIN_SHAKE, MAX_SHAKE);
 	delay(500);
-	crow.playMelody(testNotes, testDuration, 38);
+//	crow.playMelody(testNotes, testDuration, 38);
 	currentColor = UNKNOWN;
 	for (int i = 0;i < 70;i++) {
 		turnplate.setAngle(MID_GROOVE);
@@ -54,28 +31,35 @@ void Startleggs::init() {
 	}
 	for (int i = 0;i < 3;i++) {
 		eyesBlue.blink(200);
-		delay(100);
 		eyesRed.blink(200);
-		delay(100);
 	}
 }
 
 int Startleggs::detectColor() {
 	color x;
-	bool isBlue=1, isRed=1, isGreen=1;
+//	bool isBlue=1, isRed=1, isGreen=1;
 	for (int i = 0;i < 3;i++) {
 		RGB colorInfo = this->sensor.readRGB();
-		if (colorInfo.B < colorInfo.G)
-			isBlue = false;
-		if (colorInfo.R < -200)
+#ifdef DEBUG
+		sendMsg(colorInfo.R);
+		sendMsg(colorInfo.G);
+		sendMsg(colorInfo.B);
+		sendMsg("\n");
+#endif
+		if (colorInfo.G - colorInfo.R > 45)
 			return this->currentColor = GREEN;
-		if (colorInfo.R > 200)
+		if (colorInfo.B - colorInfo.R > 55)
+			return this->currentColor = BLUE;
+		if (colorInfo.R - colorInfo.G > 60)
 			return this->currentColor = RED;
-
+		//if (colorInfo.B < colorInfo.G)
+		//	isBlue = false;
+		//if (colorInfo.R < -200)
+		//	return this->currentColor = GREEN;
+		//if (colorInfo.R > 200)
+		//	return this->currentColor = RED;
 	}
-	if (isRed && isGreen && !isBlue)
-		return this->currentColor = UNKNOWN;
-	return this->currentColor = BLUE;
+	return this->currentColor = UNKNOWN;
 }
 
 color Startleggs::getCurrentColor() {
@@ -100,26 +84,6 @@ void Startleggs::changeEye() {
 	}
 }
 
-#ifdef DEBUG
-void Startleggs::changeEye(color x) {
-	switch (x) {
-	case RED:
-		eyesBlue.lightOff();
-		eyesRed.lightOn();
-		break;
-	case BLUE:
-		eyesRed.lightOff();
-		eyesBlue.lightOn();
-		break;
-	case UNKNOWN:
-	default:
-		eyesBlue.lightOff();
-		eyesRed.lightOff();
-		break;
-	}
-}
-#endif
-
 void Startleggs::layEgg() {
 #ifdef DEBUG
 	sendMsg("current Color is ");
@@ -127,28 +91,28 @@ void Startleggs::layEgg() {
 #endif
 	switch (currentColor) {
 	case RED:
-		this->turnplate.setAngle(RED_GROOVE);
-		this->turnplate.setAngle(MID_ANG);
+		crowing();
+		this->turnplate.sweep(MID_GROOVE, RED_GROOVE);
+		delay(20);
+		this->turnplate.sweep(RED_GROOVE, MID_GROOVE);
+		delay(20);
 		break;
 	case BLUE:
-		this->turnplate.setAngle(BLUE_GROOVE);
-		this->turnplate.setAngle(MID_ANG);
+		crowing();
+		this->turnplate.sweep(MID_GROOVE, BLUE_GROOVE);
+		delay(20);
+		this->turnplate.sweep(BLUE_GROOVE, MID_GROOVE);
+		delay(20);
 		break;
 	default:
-#ifdef DEBUG
-		this->turnplate.sweep(RED_GROOVE, BLUE_GROOVE);
-		delay(200);
-		this->turnplate.sweep(BLUE_GROOVE, RED_GROOVE);
-		delay(300);
-#endif
 		break;
 	}
 }
 
 void Startleggs::shakeHead() {
-	this->head.sweep(MID_ANG, MIN_SHAKE);
+	this->head.sweep(MID_SHAKE, MIN_SHAKE);
 	this->head.sweep(MIN_SHAKE, MAX_SHAKE);
-	this->head.sweep(MAX_SHAKE, MID_ANG);
+	this->head.sweep(MAX_SHAKE, MID_SHAKE);
 }
 
 void Startleggs::crowing() {

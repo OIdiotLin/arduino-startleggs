@@ -19,7 +19,7 @@
 #define TURNPLATE_PIN_ID 5	// pulse pin id of turnplate SteeringGear
 #define CROW_PIN_ID 3	// pulse pin id of crow Buzzer
 #define SENSOR_PINS_ID 8,9,10,11,2	// s0 to s3 pins id and out pin id of ColorSensor TCS3200
-#define TOUCH_PIN_ID 13	// pin id of touch Switch
+#define TOUCH_PIN_ID 12,13	// pin id of touch Switch
 /***************************COLOR_ID**********************************/
 #define RED 0
 #define GREEN 1
@@ -55,9 +55,6 @@ public:
 	color detectColor();	// return RED 0; GREEN 1; BLUE 2;
 	color getCurrentColor();	// return member cuurentColor
 	void changeEye();	// change eyes' color according to cuurentColor
-#ifdef DEBUG
-	void changeEye(color x);
-#endif
 	void layEgg();
 	void shakeHead();	// shake head when getColor red
 	void crowing();

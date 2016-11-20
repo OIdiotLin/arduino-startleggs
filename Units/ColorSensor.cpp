@@ -1,7 +1,7 @@
 // Using TCS3200
 #include "ColorSensor.h"
 
-#define DEBUG
+//#define DEBUG
 
 #ifdef DEBUG
 #include "Serial.h"

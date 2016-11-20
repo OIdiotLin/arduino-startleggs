@@ -16,10 +16,12 @@ void SteeringGear::setAngle(int angle) {
 }
 
 void SteeringGear::sweep(int startAngle, int endAngle) {
-	for (int angle = startAngle;angle <= endAngle;angle++)
-		this->setAngle(angle);
-	for (int angle = endAngle;angle >= startAngle;angle--)
-		this->setAngle(angle);
+	if (startAngle < endAngle)
+		for (int angle = startAngle;angle <= endAngle;angle++)
+			this->setAngle(angle);
+	if (startAngle > endAngle)
+		for (int angle = startAngle;angle >= endAngle;angle--)
+			this->setAngle(angle);
 }
 
 void SteeringGear::servoPulse(int angle) {
