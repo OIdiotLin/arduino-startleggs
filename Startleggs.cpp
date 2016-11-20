@@ -23,7 +23,7 @@ void Startleggs::init() {
 //	turnplate.sweep(RED_GROOVE, BLUE_GROOVE);
 	head.sweep(MAX_SHAKE, MAX_SHAKE-1);
 	delay(500);
-	crow.playMelody(testNotes, testDuration, 38);
+	crow.playMelody(testNotes, testDuration, 74);
 	currentColor = UNKNOWN;
 	for (int i = 0;i < 70;i++) {
 		turnplate.setAngle(MID_GROOVE);
@@ -114,7 +114,7 @@ void Startleggs::shakeHead() {
 	//this->head.sweep(MID_SHAKE, MIN_SHAKE);
 	//this->head.sweep(MIN_SHAKE, MAX_SHAKE);
 	//this->head.sweep(MAX_SHAKE, MID_SHAKE);
-	this->head.sweep(MIN_SHAKE - 5, MIN_SHAKE);
+	this->head.sweep(MIN_SHAKE - 3, MIN_SHAKE-2);
 	delay(200);
 	this->head.sweep(MAX_SHAKE + 1, MAX_SHAKE);
 	delay(300);
