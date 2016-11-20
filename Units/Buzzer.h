@@ -24,6 +24,9 @@ public:
 
 #endif // !BUZZER_H
 
+const int shakeNotes[3] = { NOTE_C6,NOTE_C6,NOTE_C6 };
+const double shakeDuration[3] = { DUR_WHOLE,DUR_WHOLE,DUR_DOUBLE };
+
 // melody of S.C.U.T
 const int testNotes[74] = {
 	NOTE_C4,NOTE_C4,NOTE_A3,NOTE_G3,NOTE_G4,NOTE_G4,NOTE_A4,NOTE_G4,

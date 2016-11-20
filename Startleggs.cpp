@@ -20,10 +20,10 @@ void Startleggs::init() {
 	touch = Switch(TOUCH_PIN_ID);
 
 	// units testing
-	turnplate.sweep(RED_GROOVE, BLUE_GROOVE);
-	head.sweep(MIN_SHAKE, MAX_SHAKE);
+//	turnplate.sweep(RED_GROOVE, BLUE_GROOVE);
+	head.sweep(MAX_SHAKE, MAX_SHAKE-1);
 	delay(500);
-//	crow.playMelody(testNotes, testDuration, 38);
+	crow.playMelody(testNotes, testDuration, 38);
 	currentColor = UNKNOWN;
 	for (int i = 0;i < 70;i++) {
 		turnplate.setAngle(MID_GROOVE);
@@ -50,7 +50,7 @@ int Startleggs::detectColor() {
 			return this->currentColor = GREEN;
 		if (colorInfo.B - colorInfo.R > 55)
 			return this->currentColor = BLUE;
-		if (colorInfo.R - colorInfo.G > 60)
+		if (colorInfo.R - colorInfo.G > 75)
 			return this->currentColor = RED;
 		//if (colorInfo.B < colorInfo.G)
 		//	isBlue = false;
@@ -110,8 +110,14 @@ void Startleggs::layEgg() {
 }
 
 void Startleggs::shakeHead() {
-	this->head.sweep(MID_SHAKE, MIN_SHAKE);
-	this->head.sweep(MIN_SHAKE, MAX_SHAKE);
+	this->crow.playMelody(shakeNotes, shakeDuration, 3);
+	//this->head.sweep(MID_SHAKE, MIN_SHAKE);
+	//this->head.sweep(MIN_SHAKE, MAX_SHAKE);
+	//this->head.sweep(MAX_SHAKE, MID_SHAKE);
+	this->head.sweep(MIN_SHAKE - 5, MIN_SHAKE);
+	delay(200);
+	this->head.sweep(MAX_SHAKE + 1, MAX_SHAKE);
+	delay(300);
 	this->head.sweep(MAX_SHAKE, MID_SHAKE);
 }
 

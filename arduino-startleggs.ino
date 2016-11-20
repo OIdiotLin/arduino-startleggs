@@ -9,7 +9,7 @@
  
 Startleggs ancientGiantCock;
 
-#define DEBUG
+//#define DEBUG
 
 void setup() {
 	ancientGiantCock.init();

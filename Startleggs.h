@@ -3,7 +3,7 @@
 	All other underlying codes are included in the head files below.
 */
 
-#define DEBUG
+//#define DEBUG
 
 #include "Units\Buzzer.h"	// Simulating the crow
 #include "Units\ColorSensor.h"	// Scanning the kind of the food given
