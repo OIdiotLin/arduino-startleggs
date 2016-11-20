@@ -10,6 +10,7 @@ const ColorFilter G = ColorFilter(30, 90);
 const ColorFilter B = ColorFilter(25, 70);
 struct RGB {
 	int R, G, B;
+	RGB(int r=0,int g=0,int b=0) :R(r),G(g),B(b){}
 };
 // Using TCS3200
 #ifndef COLOR_SENSOR_H

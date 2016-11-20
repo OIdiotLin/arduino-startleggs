@@ -20,7 +20,29 @@ void Startleggs::init() {
 	crow = Buzzer(CROW_PIN_ID);
 	sensor = ColorSensor(SENSOR_PINS_ID);
 	touch = Switch(TOUCH_PIN_ID);
+
 	// units testing
+	while (true) {
+		detectColor();
+#ifdef DEBUG
+		int x = this->getCurrentColor();
+		switch (x)
+		{
+		case 0:
+			sendMsg("RED\n");
+			break;
+		case 1:
+			sendMsg("GREEN\n");
+			break;
+		case 2:
+			sendMsg("BLUE\n");
+			break;
+		default:
+			sendMsg("UNKNOWN\n");
+			break;
+		}
+#endif
+	}
 	turnplate.sweep(RED_GROOVE, BLUE_GROOVE);
 	head.sweep(MIN_SHAKE, MAX_SHAKE);
 	delay(500);
@@ -30,15 +52,30 @@ void Startleggs::init() {
 		turnplate.setAngle(MID_GROOVE);
 		head.setAngle(MID_SHAKE);
 	}
-	eyesBlue.blink(200);
-	eyesRed.blink(200);
+	for (int i = 0;i < 3;i++) {
+		eyesBlue.blink(200);
+		delay(100);
+		eyesRed.blink(200);
+		delay(100);
+	}
 }
 
 int Startleggs::detectColor() {
-	// something left to do.
-	// unfinished.
-	RGB colorInfo = this->sensor.readRGB();
-	return this->currentColor;
+	color x;
+	bool isBlue=1, isRed=1, isGreen=1;
+	for (int i = 0;i < 3;i++) {
+		RGB colorInfo = this->sensor.readRGB();
+		if (colorInfo.B < colorInfo.G)
+			isBlue = false;
+		if (colorInfo.R < -200)
+			return this->currentColor = GREEN;
+		if (colorInfo.R > 200)
+			return this->currentColor = RED;
+
+	}
+	if (isRed && isGreen && !isBlue)
+		return this->currentColor = UNKNOWN;
+	return this->currentColor = BLUE;
 }
 
 color Startleggs::getCurrentColor() {

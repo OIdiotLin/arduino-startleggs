@@ -18,15 +18,15 @@
 21	}
 22	
 --&gt;23	void loop() {
-24		ancientGiantCock.layEgg();
-25		delay(2000);
-26	//	if (ancientGiantCock.getCurrentColor() == GREEN) {
-27	//#ifdef DEBUG
-28	//		sendMsg("\tGREEN!\n");
-29	//#endif
-30	//		ancientGiantCock.shakeHead();
-31	//	}
-32	//	if (ancientGiantCock.isTouched()) {
+24	//	if (ancientGiantCock.getCurrentColor() == GREEN) {
+25	//#ifdef DEBUG
+26	//		sendMsg("\tGREEN!\n");
+27	//#endif
+28	//		ancientGiantCock.shakeHead();
+29	//	}
+30	//	if (ancientGiantCock.isTouched()) {
+31	//#ifdef DEBUG
+32	//		sendMsg("TOUCHED!\n");
 </Source>
         <MessageVariables>
           <MessageVariable Name="millis()" Index="1" />

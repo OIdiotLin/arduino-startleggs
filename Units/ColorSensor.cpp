@@ -7,6 +7,8 @@
 #include "Serial.h"
 #endif
 
+//#define STD_CODE
+
 void ColorSensor::shiftMode(int mode) {
 	switch (mode) {
 	case 0:
@@ -40,6 +42,7 @@ ColorSensor::ColorSensor(uint8_t id0, uint8_t id1, uint8_t id2, uint8_t id3, uin
 	S2.setId(id2), S2.setMode(OUTPUT);
 	S3.setId(id3), S3.setMode(OUTPUT);
 	OUT.setId(idO), OUT.setMode(INPUT);
+	init();
 }
 
 ColorSensor::~ColorSensor()
@@ -54,7 +57,7 @@ void ColorSensor::init() {
 
 RGB ColorSensor::readRGB() {
 	RGB color;
-
+#ifndef STD_CODE
 	shiftMode(1);
 	color.R = map(pulseIn(OUT.getId(), LOW), R.lower, R.upper, RGB_MAX, 0);
 	delay(100);
@@ -64,13 +67,44 @@ RGB ColorSensor::readRGB() {
 	shiftMode(3);
 	color.B = map(pulseIn(OUT.getId(), LOW), B.lower, B.upper, RGB_MAX, 0);
 	delay(100);
-
-#ifdef DEBUG
-	sendMsg(millis());
-	sendMsg(color.R);
-	sendMsg(color.G);
-	sendMsg(color.B);
-	sendMsg("\n");
-#endif // DEBUG
 	return color;
+
+#endif
+
+#ifdef STD_CODE
+	int frequency;
+	// Setting red filtered photodiodes to be read
+	S2.setDigital(LOW);
+	S3.setDigital(LOW);
+	// Reading the output frequency
+	frequency = pulseIn(OUT.getId(), LOW);
+	//Remaping the value of the frequency to the RGB Model of 0 to 255
+	frequency = map(frequency, 25, 72, 255, 0);
+	// Printing the value on the serial monitor
+	color.R = frequency;
+	delay(100);
+
+	// Setting Green filtered photodiodes to be read
+	S2.setDigital(HIGH);
+	S3.setDigital(HIGH);
+	// Reading the output frequency
+	frequency = pulseIn(OUT.getId(), LOW);
+	//Remaping the value of the frequency to the RGB Model of 0 to 255
+	frequency = map(frequency, 30, 90, 255, 0);
+	// Printing the value on the serial monitor
+	color.G = frequency;
+	delay(100);
+
+	// Setting Blue filtered photodiodes to be read
+	S2.setDigital(LOW);
+	S3.setDigital(HIGH);
+	// Reading the output frequency
+	frequency = pulseIn(OUT.getId(), LOW);
+	//Remaping the value of the frequency to the RGB Model of 0 to 255
+	frequency = map(frequency, 25, 70, 255, 0);
+	// Printing the value on the serial monitor
+	color.B = frequency;
+	delay(100);
+	return color;
+#endif
 }

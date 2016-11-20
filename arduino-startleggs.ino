@@ -21,8 +21,6 @@ void setup() {
 }
 
 void loop() {
-	ancientGiantCock.layEgg();
-	delay(2000);
 //	if (ancientGiantCock.getCurrentColor() == GREEN) {
 //#ifdef DEBUG
 //		sendMsg("\tGREEN!\n");
