@@ -33,7 +33,7 @@ void Buzzer::sweep(int from, int end) {
 }
 
 void Buzzer::playMelody(const int * melody, const double *duration, const int size) {
-	for (int i = 0;i < 38;i++) {
+	for (int i = 0;i < size ;i++) {
 		beep(melody[i], duration[i]);
 	}
 }

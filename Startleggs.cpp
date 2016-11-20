@@ -24,6 +24,7 @@ void Startleggs::init() {
 	turnplate.sweep(RED_GROOVE, BLUE_GROOVE);
 	head.sweep(MIN_SHAKE, MAX_SHAKE);
 	delay(500);
+	crow.playMelody(testNotes, testDuration, 38);
 	currentColor = UNKNOWN;
 	for (int i = 0;i < 70;i++) {
 		turnplate.setAngle(MID_GROOVE);
