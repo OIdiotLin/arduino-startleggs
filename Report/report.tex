@@ -1,0 +1,424 @@
+\documentclass[a4paper,12pt]{ctexart}
+	\title{\fontsize{30pt}{\baselineskip}\selectfont\textbf{《数字系统创意设计》\\课程报告}}
+	\author{}
+	\date{}
+    \usepackage{amsmath}
+    \usepackage{fancyhdr}	% 页眉页脚格式控制
+    \usepackage{caption}
+    \usepackage{titlesec}
+    \usepackage{indentfirst}
+    \usepackage{listings}	% 代码插入
+    \usepackage{xcolor}		% 颜色
+    \usepackage{fontspec}	% 选字体
+    \usepackage{subfigure}
+    \usepackage{clrscode}
+    \usepackage{hyperref}	% 交叉引用
+	\usepackage{makecell}	% 表格特殊单元格设计
+	\usepackage{multirow}
+	\usepackage{multicol}
+	\usepackage{longtable}
+	\usepackage{dirtree}
+	\usepackage{amssymb}
+	\usepackage{mdwlist}
+	\usepackage{graphicx}
+	\usepackage{geometry}
+	\hypersetup{pdftitle={数字系统创意设计},
+                pdfauthor={Huidong Lin}}
+	\geometry{left=3.17cm,right=3.17cm,top=2.54cm,bottom=2.54cm}
+	\setcounter{tocdepth}{3}
+	
+	\newfontfamily\consolas{Consolas}	% 引入 Monaco 字体	
+	
+	\newcommand{\tabincell}[2]{\begin{tabular}{@{}#1@{}}#2\end{tabular}}	% 单元格内建表
+	
+	\pagestyle{fancy}
+		\lhead{\texttt{数字系统创意设计}}
+		\chead{}
+		\rhead{\textsl{South China University of Technology}}
+		\lfoot{}
+		\rfoot{}
+		\cfoot{\thepage}
+	\renewcommand{\headrulewidth}{0pt}
+	
+	\setlength{\parindent}{2em}
+ 
+	\captionsetup[figure]{labelfont={bf,it},labelformat={simple},labelsep=period,name={fig}}
+	\captionsetup[table]{labelfont={bf,it},labelformat={simple},labelsep=period,name={tab}}
+	
+	\newcommand{\sectionfontsize}{\fontsize{15pt}{18pt}\selectfont}
+	\newcommand{\parfontsize}{\fontsize{12pt}{18pt}\selectfont}
+		
+	\makeatletter %使\section中的内容左对齐
+	\renewcommand{\section}{\@startsection{section}{1}{0mm}
+		{-\baselineskip}{0.5\baselineskip}{\sectionfontsize\bf\leftline}}
+	\newcommand\dlmu[2][4cm]{\hskip1pt\underline{\hb@xt@ #1{\hss#2\hss}}\hskip3pt}
+	\makeatother
+	
+	\hypersetup{hidelinks}
+	\def\figureautorefname{fig}%
+	\def\tableautorefname{tab}%
+	\newcommand{\aref}[1]{\textbf{\textit{\autoref{#1}}}}
+	
+	\lstset{			% 代码高亮
+		numbers=left,
+		keywordstyle=\color{blue!70},
+		commentstyle=\color{red!50!green!50!blue!50},
+		rulesepcolor=\color{red!20!green!20!blue!20},
+		numberstyle=\tiny\consolas,
+		basicstyle=\small\consolas,
+		tabsize=2,
+		breaklines=true,
+		lineskip=4pt,
+		frame=shadowbox,
+		xleftmargin=2em,xrightmargin=2em, aboveskip=1em
+	}	
+	
+	\newcounter{RomanNumber}
+	\newcommand{\romanNumber}[1]{\setcounter{RomanNumber}{#1}\Roman{RomanNumber}}	
+	
+	\hfuzz=\maxdimen	% 忽略宽度限定
+	\tolerance=10000
+	\hbadness=10000
+	
+	\setlength{\baselineskip}{30pt}
+	\renewcommand{\contentsname}{\hspace*{\fill}目\quad 录\hspace*{\fill}}
+	
+\begin{document}	
+%%--------------------------FORE_PAGE---------------------------%%
+	
+	\begin{figure*} % SCUT logo
+	\centering
+	\includegraphics[scale=1.2]{images/logo.png}
+	\end{figure*}
+	\maketitle
+\begin{center} % forepage text
+	\fontsize{20pt}{\baselineskip}\selectfont\textbf{题目：\underline{Startleggs —— 下蛋华（滑）鸡（稽）}}
+	
+	\vspace{30pt}
+	
+	\fontsize{15pt}{\baselineskip}\selectfont
+	\begin{center}
+	姓名、学号：\dlmu[7cm]{林会东\quad 201636665056}\\
+	学院、班级：\dlmu[7cm]{软件学院 2016级4班}\\
+	姓名、学号：\dlmu[7cm]{连木明\quad 201630664918}\\
+	学院、班级：\dlmu[7cm]{软件学院 2016级4班}\\
+	姓名、学号：\dlmu[7cm]{李榷基\quad 201630664833}\\
+	学院、班级：\dlmu[7cm]{软件学院 2016级4班}\\
+	姓名、学号：\dlmu[7cm]{黄文禹\quad 201636664523}\\
+	学院、班级：\dlmu[7cm]{软件学院 2016级4班}
+	\end{center}
+	
+	\begin{figure*}[bp]\centering{华南理工大学\\二〇一六年十月}\end{figure*}
+\end{center}
+	\thispagestyle{empty}
+	\clearpage
+	\thispagestyle{empty}
+	%\begin{multicols}{2}
+	\tableofcontents
+	%\end{multicols}
+	\clearpage
+		
+%%--------------------------MAIN_BODY--------------------------%%
+	\setcounter{page}{1}
+	\section{系统总体介绍}
+	本作品的外形是一只气宇轩昂的白羽公鸡，支持的动作有：
+	\vspace{10pt}
+	
+	\indent{\begin{tabular}{l}
+	1.唱校歌。 \\ 
+	2.识别喂食颜色。 \\ 
+	3.识别到红色，眼睛变红，长鸣叫并产红色的蛋。 \\ 
+	4.识别到蓝色，眼睛变蓝，长鸣叫并产蓝色的蛋。 \\ 
+	5.识别到绿色，摇头并短促鸣叫。
+	\end{tabular}}
+	
+	\section{技术方案}
+		\subsection{结构设计与实现}
+			\subsubsection{外型设计}
+				采用轻质的木棒做骨架，用玻璃胶进行粘接。头部与身体分离。外壳用白色泡沫纸覆盖。整个鸡身由两只脚支撑，我们采用了高分子材料塑造了两只仿真度较高的鸡脚，可沿木棒滑动或绕木棒旋转，使得平衡重心变得方便不少。
+			\subsubsection{布线设计}
+				主要部件——轮盘放在两脚之间的腹部。开发板及面包板置于胸腹部（如图\aref{unitLocation}）。这样一来重心前移不少，于是在尾部增加了几块配重以保持平衡。
+				\begin{figure}[!ht]
+					\centering
+					\includegraphics[scale=0.7]{images/units_location.png}
+					\caption{胸腹部的元件}\label{unitLocation}
+				\end{figure}
+			\subsubsection{选择轮盘设计}
+				大体结构如 \aref{turnplateStructure} 所示，采用一个舵机控制选择槽（灰色）的转动。整个轮盘与水平面夹角约45°倾斜放置。在等候命令时，选择槽位于底盘（棕色）正中角度，两侧的挡板挡住了两个槽（红/蓝）中的乒乓球下落。当收到产红蛋的指令时，舵机逆时针旋转至左侧的红色槽，这时红色槽中的球落入选择槽，选择槽转动回正中位置，受重力作用从底板缺口处落下。当收到产蓝蛋指令时，进行相反方向转动。
+				
+				\begin{figure}[!ht]
+					\centering
+					\subfigure[斜后方]{\includegraphics[width=7cm]{images/turnplate_01.png}}
+					\subfigure[剖面]{\includegraphics[width=7cm]{images/turnplate_02.png}}
+					\caption{轮盘示意图}\label{turnplateStructure}
+				\end{figure}
+			\subsubsection{颜色识别器设计}
+				为了获取所喂食物的颜色，我们把TCS3200由鼻腔位向下贴在上颚处（如图\aref{tcs3200pos}）。为了获得较大的色差对比，我们将下颚面补满白色，即方便了传感器的白平衡，又方便测量。
+				\begin{figure}[!ht]
+				\centering
+				\includegraphics[width=7cm]{images/colorsensor.jpg}
+				\caption{TCS3200的位置}\label{tcs3200pos}
+				\end{figure}
+		\clearpage
+		\subsection{电路设计与实现}
+			所有元件通过面包板与Uno开发板连接，用充电宝即可提供电源。各元件针脚信息如 \aref{pinTable} 所示。插线图如 \aref{linkSketch} 所示。
+			
+			\begin{figure}[!ht]
+			\centering
+			\includegraphics[scale=.7]{images/sketch_fritzing.png}
+			\caption{连线示意图}\label{linkSketch}
+			\end{figure}
+			
+			\begin{longtable}[!ht]{|c|c|c|c|}
+				\hline
+				\textbf{元件类型} & \textbf{元件名} & \textbf{元件引脚编号} & \textbf{开发板pin口编号}\\ \hline
+				\multirow{7}{*}{颜色识别器} &
+				\multirow{7}{*}{ColorSensor} &
+				S0&D8\\ \cline{3-4}
+				 & & S1 & D9\\ \cline{3-4}
+				 & & S2 & D10\\ \cline{3-4}
+				 & & S3 & D11\\  \cline{3-4}
+				 & & OUT & D2\\ \cline{3-4}
+				 & & VDD & 5V\\ \cline{3-4}
+				 & & GND & GND\\ \hline
+				 \multirow{3}{*}{舵机} &
+				 \multirow{3}{*}{Head} &
+				 SIG & D5\\ \cline{3-4}
+				 & & VDD & 5V\\ \cline{3-4}
+				 & & GND & GND\\ \hline
+				 \multirow{3}{*}{舵机} &
+				 \multirow{3}{*}{Turnplate} &
+				 SIG & D6\\ \cline{3-4}
+				 & & VDD & 5V\\ \cline{3-4}
+				 & & GND & GND\\ \hline
+				 \multirow{2}{*}{蜂鸣器} &
+				 \multirow{2}{*}{Buzzer} &
+				 SIG & D3\\ \cline{3-4}
+				 & & GND & GND\\ \hline
+				 \multirow{2}{*}{LED} &
+				 \multirow{2}{*}{RedEyes(L/R并联)} &
+				 + & D7\\ \cline{3-4}
+				 & & - & GND\\ \hline
+				 \multirow{2}{*}{LED} &
+				 \multirow{2}{*}{BlueEyes(L/R并联)} &
+				 + & D4\\ \cline{3-4}
+				 & & - & GND\\ \hline
+				 
+				 
+			\caption{针脚接线表}\label{pinTable}
+			\end{longtable}
+		\subsection{程序设计与实现}
+			\subsubsection{主程序设计}
+				\aref{mainProg} 表达了 Startleggs 的主流程。
+				
+				\begin{figure}[!ht]
+				\centering
+				\includegraphics[scale=0.5]{images/flow_chart.png}
+				\caption{主流程图}\label{mainProg}
+				\end{figure}
+			\subsubsection{采用面向对象化的编程思想}
+				为了让各元件分工明确、整个项目结构清晰、易于调试及维护，我们摒弃了 arduino 传统的面向过程化编程，而采用面向对象化。将各元件类型封装好，逻辑结构如 \aref{unitStructure} 所示。其中\textbf{结构分层}指该类在项目中的逻辑层级，第\romanNumber{1} 层是最底层（主要是pin口操作），第\romanNumber{2} 层是电子元件层（各元件的基础操作），第\romanNumber{3} 层是动作层（数据综合分析并作出反应）。
+				
+				\begin{table}[!ht]
+				\centering
+				\begin{tabular}{|c|c|c|}
+					\hline
+					\textbf{元件/实体名称} & \textbf{类名} & \textbf{结构分层}\\ \hline
+					pin口 & Pin & \romanNumber{1}\\ \hline
+					蜂鸣器 & Buzzer & \romanNumber{2}\\ \hline
+					颜色识别器 & ColorSensor & \romanNumber{2}\\ \hline
+					LED灯 & LED & \romanNumber{2}\\ \hline
+					串口通信 & Serial & \romanNumber{2}\\ \hline
+					舵机 & SteeringGear & \romanNumber{2}\\ \hline
+					动作 & Startleggs & \romanNumber{3}\\
+					\hline
+				\end{tabular}
+				\caption{类的逻辑结构}\label{unitStructure}
+				\end{table}
+				
+				虽然前期底层代码的编写耗费了比较多的时间，但是为工程中后期的维护及调试节约了大量的时间，提高了效率。
+			\subsubsection{让蜂鸣器奏出旋律}
+				为了让 Startleggs 能够发出有规律的、不同频率的声音，尤其是为了能够演奏校歌，我们需要得到关于音调的频率函数$f(t)$。再通过 Arduino.h 中的 tone 函数发出特定频率的声音。
+				
+				在 GitHub 上查询到了音调与脉冲频率的对应表，写入 pitches.h（详见附件）。
+				
+				为了让两个音符之间有间隔区分，我们尝试了多种间隔时间，最后发现以 1.2 作为系数比较理想（详见代码）。
+			\subsubsection{颜色识别器}
+				TCS3200 的 OUT 口返回的是光线通过红、绿、蓝三种滤波器后的输出脉冲（通过修改工作滤波器分别返回），我们想要的值应该是读取到颜色的 RGB 值。所以需要用这三个脉冲参数推算出 RGB。
+				
+				最终我们采用的方法是：依次选通三颜色的滤波器，利用 pulseIn 读入脉冲，再通过 map 函数与标准色脉冲数构造出一个近似RGB的值。这种方法误差虽然大，但是足以达到目标效果——区分红绿蓝。
+			\subsubsection{代码版本管理}
+				为了方便小组成员使用、更新代码，我们将项目发布到了 GitHub 上进行管理。
+				
+				git： \href{https://github.com/OIdiotLin/arduino-startleggs}{https://github.com/OIdiotLin/arduino-startleggs}
+	\section{实验测试及结果}
+		系统共经历了21次调试，34处代码修改。最终整体效果良好，各流程运行正常，符合初步设想。
+	\section{项目总结}
+		\subsection{作品总结}
+			通过多次的设计、编码、调试、测试、修改，Startleggs如期完成。成员间协调顺利，工作分配恰当，大大加速了此系统的构建进程。
+			
+			在最终展示环节表现较为突出，尤其能奏唱华工之歌，更是夺人眼目。Startleggs的颜色识别技术和蜂鸣器的巧用，达到了本课程“创意设计”的目的，是一项较为满意的作品。希望今后能对其进行更好的维护。
+		\subsection{成员心得}
+			\textbf{黄文禹}：在这次Startleggs的制作中，我在实践中学会了arduino开发板的开发制作流程，同时在最后的视频制作过程我也更加熟练地掌握了AE，PR等软件的应用。同时我也再一次地感受到了团队的力量。在合理的分工合作下，我们顺利地完成了Startleggs。每个人都按照自己的分工积极参与工程制作，虽然在调试的过程中也出现过许多小问题，但我们四人齐心协力，共同完成了这只Startleggs。
+			
+			\textbf{林会东}：第一次将所学知识融入了真实的项目，架构能力++，代码能力++，debug能力++，积累了小型项目的团队开发经验，对单片机有了初步的了解。同时也加强了动手能力的培养。这门课程之于我的学习生涯是一片钥匙，打开了进入不一样的世界的大门。
+			
+			\textbf{李榷基}：经过了为期一个多月的课程，我们从零开始，一点一点地向前迈进，终于完成了我们的作品。在这个过程中，我学到了很多接触比较少的知识，例如arduino的各个部件的实现等等。同时，我还从作品的装置和外型的设计过程中充分发挥自己的想象力和判断力，从而保证装置的可行性以及装置和外型之间的协调性。最后，我体会到在一个团队中每个人必须分工合作互相协调。
+			
+			\textbf{连木明}：在这个数字系统创意设计课程中,虽然碰到很多困难，但却学到很多很有价值的东西：忙并快乐着。在参加课程过程中，ardunio板的学习和实践让我们很忙，我有很多不懂，所以我查阅相关资料，请教同学老师，这个过程很忙，但是我学到很多知识，接触很多新奇的物品，这让感到很快乐；累并感动着。在具体的作品制作过程中，我负责的是立体结构设计，在这过程中，有时需要到实验室拿物品，有时碰到很难解决的立体结构问题，有时还会熬夜制作，但是我们四人互帮互助，在交流中解决问题，思想碰撞的过程想出很多很好的解决方案，我们团队共进退，同努力，虽然很累，但我感到感动。在这整个课程中，我学到ardunio的基础知识，学会了写程序实现小创意，学会了基础的立体结构设计，我觉得这个课程对我的以后的学习具有很重要的影响。
+	\clearpage
+	\section{附录}
+		\subsection{设备清单表}
+			\aref{materialList} 包含了本项目所用的所有主要材料。
+			
+			\begin{table}[!ht]
+			\centering
+			\begin{tabular}{|l|c|l|}
+				\hline
+				\makecell[c]{\textbf{名称}} & \textbf{数量} &\makecell[c]{\textbf{用途}}\\ \hline
+				Arduino Uno & 1 & 控制各元件按程序正常工作\\ \hline
+				颜色识别器TCS3200 & 1 & 识别物体颜色\\ \hline
+				舵机 & 2 & 调整头部朝向、转动轮盘\\ \hline
+				蜂鸣器 & 1 & 发出声音\\ \hline
+				LED灯 & 4 & 模拟眼睛\\ \hline
+				高分子材料 & 若干 & 制作鸡脚、固定元件\\ \hline
+				导线 & 若干 & 连接电路\\ \hline
+				面包板 & 1 & 连接电路\\ \hline
+				细木棒 & 若干 & 制作骨架\\
+				\hline
+			\end{tabular}
+			\caption{设备清单}\label{materialList}
+			\end{table}
+		\subsection{小组成员名单及分工}
+			\begin{longtable}[!ht]{|c|c|}
+				\hline
+				\textbf{姓名} & \textbf{工作内容}\\ \hline
+				\tabincell{c}{林会东\\\includegraphics[width=2.5cm]{images/lhd.png}} & 程序设计与实现、电路设计、报告文档编辑\\ \hline
+				\tabincell{c}{连木明\\\includegraphics[width=2.5cm]{images/lmm.png}} & 结构设计与实现、组织统筹工作、外型设计与实现\\ \hline
+				\tabincell{c}{李榷基\\\includegraphics[width=2.5cm]{images/lqj.png}} & 外型设计与实现、电路实现\\ \hline
+				\tabincell{c}{黄文禹\\\includegraphics[width=2.5cm]{images/hwy.png}} & 电路设计与实现、摄像摄影、后期制作\\ \hline
+			
+			
+			\caption{成员分工}\label{memberList}
+			\end{longtable}
+		\subsection{部分源代码}
+			\subsubsection{主程序}
+				\begin{lstlisting}[language=C++]
+void setup() {
+	ancientGiantCock.init();
+	delay(2000);
+}
+void loop() {
+	ancientGiantCock.detectColor();
+	ancientGiantCock.changeEye();
+	if (ancientGiantCock.getCurrentColor() == GREEN) {
+		ancientGiantCock.shakeHead();
+	}
+	ancientGiantCock.layEgg();
+}
+				\end{lstlisting}
+			\subsubsection{舵机角度控制}
+				\begin{lstlisting}[language=C++]
+/* These codes below are in SteeringGear.cpp */
+void SteeringGear::servoPulse(int angle) {
+	// turn the angle to a pulse width
+	int pulseWidth = (angle * 11) + 500;
+	this->pin.setDigital(HIGH);
+	delayMicroseconds(pulseWidth);
+	this->pin.setDigital(LOW);
+	delay(20 - pulseWidth / 1000);
+}
+void SteeringGear::setAngle(int angle) {
+	this->servoPulse(angle);
+	delay(15);
+}
+void SteeringGear::sweep(int startAngle, int endAngle) {
+	if (startAngle < endAngle)
+		for (int angle = startAngle;angle <= endAngle;angle++)
+			this->setAngle(angle);
+	if (startAngle > endAngle)
+		for (int angle = startAngle;angle >= endAngle;angle--)
+			this->setAngle(angle);
+}
+				\end{lstlisting}
+			\subsubsection{蜂鸣器频率控制}
+				\begin{lstlisting}[language=C++]
+/* These codes below are in Buzzer.cpp */
+void Buzzer::beep(const int note, const double noteDuration) {
+	// e.g.	quarter note=1000/4, eighth note=1000/8, etc.
+	int realDuration = WHOLE_NOTE_DURATION / noteDuration;
+	tone(this->pin.getId(), note, realDuration);
+
+	// to distinguish the notes, set a minimum time between them.
+	// the note's duration + 30% seems to work well:
+	delay(realDuration*INTERVAL_BETWEEN_NOTES);
+	noTone(this->pin.getId());	// stop the tone playing
+}
+/* int melody[] stores the frequency of the notes */
+void Buzzer::playMelody(const int * melody, const double *duration, const int size) {
+	for (int i = 0;i < size ;i++) {
+		beep(melody[i], duration[i]);
+	}
+}
+				\end{lstlisting}
+			\subsubsection{颜色识别器数据处理}
+				\begin{lstlisting}[language=C++]
+RGB ColorSensor::readRGB() {
+	RGB color;
+	shiftMode(1);	// Setting red filtered
+	// Remaping the frequency to the RGB Model of 0 to 255
+	color.R = map(pulseIn(OUT.getId(), LOW), R.lower, R.upper, RGB_MAX, 0);
+	delay(100);
+	shiftMode(2);	// setting green
+	color.G = map(pulseIn(OUT.getId(), LOW), G.lower, G.upper, RGB_MAX, 0);
+	delay(100);
+	shiftMode(3);	// setting blue
+	color.B = map(pulseIn(OUT.getId(), LOW), B.lower, B.upper, RGB_MAX, 0);
+	delay(100);
+	return color;
+}
+				\end{lstlisting}
+		\subsection{附件说明}
+			\begin{figure}[!ht]
+			\dirtree{%
+				.1 /{09STARTLEGGS.zip}.
+				.2 {arduino-startleggs.ino\qquad // 主程序}.
+				.2 {sketch.fzz\qquad // 接线图}.
+				.2 {Startleggs.h\qquad // 动作}.
+				.2 {Startleggs.cpp}.
+				.2 {Units\qquad // 元件及模块类}.
+				.3 {Buzzer.h\qquad // 蜂鸣器}.
+				.3 {Buzzer.cpp}.
+				.3 {ColorSensor.h\qquad // 颜色识别器}.
+				.3 {ColorSensor.cpp}.
+				.3 {LED.h\qquad // LED灯}.
+				.3 {LED.cpp}.
+				.3 {Pin.h\qquad // pin口}.
+				.3 {Pin.cpp}.
+				.3 {pitches.h\qquad // 音调及音值宏定义}.
+				.3 {Serial.h\qquad // 串口通信（调试用）}.
+				.3 {Serial.cpp}.
+				.3 {SteeringGear.h\qquad // 舵机}.
+				.3 {SteeringGear.cpp}.
+				.2 Report.
+				.3 {report.tex\qquad // 报告\LaTeX}.
+				.3 {report.pdf\qquad // 报告文档}.
+				.3 {09STARTLEGGS.mp4\qquad // 展示视频}.
+			}
+			\caption{目录树}\label{dirtree}
+			\end{figure}
+	\clearpage
+	\section{参考文献资料}
+		\begin{itemize*}
+			\item Dejan Nedelkovski. \textit{Arduino Color Sensing Tutorial – TCS230/TCS3200 Color Sensor}[CP/OL]. May 20, 2016.\\ \href{http://howtomechatronics.com/tutorials/arduino/arduino-color-sensing-tutorial-tcs230-tcs3200-color-sensor/}{http://howtomechatronics.com/tutorials/arduino/arduino-color-sensing-tutorial-tcs230-tcs3200-color-sensor/}\\
+			\item Dan Power. \textit{Arduino-Beep/pitches}[CP/OL]. Jul 4, 2014.\\ \href{https://github.com/dan-power/Arduino-Beep}{https://github.com/dan-power/Arduino-Beep}\\
+			\item 华南理工大学. \textit{《华工之歌》简谱}[EB/OL]. 2008.\\ \href{http://www.scut.edu.cn/webpage/logo.htm}{http://www.scut.edu.cn/webpage/logo.htm}\\
+		\end{itemize*}
+	\section{特别鸣谢}
+		\begin{itemize*}
+			\item 感谢华南理工大学计算机科学与工程学院提供的实验室及设备支持。\\
+			\item 感谢朱金辉教授的授课及指点。\\
+			\item 感谢李扬助教的热心帮助。\\
+			\item 感谢对我们的工作报以关注的每一位同学。\\
+		\end{itemize*}
+\end{document}
